@@ -6,54 +6,136 @@ public class Resistance {
 
 	public static void main(String[] args) {
 
-        String[] colors = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Grey", "White"};
-        int[] values = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        double[] multiply = {1, 10, 100, 1, 10, 100, 1, 10, 100, 1, 0.1, 0.01};
-        String[] toleranceColors = {"Brown", "Red", "Green", "Blue", "Violet", "Grey", "Gold", "Silver"};
-        double[] toleranceValues = {0.01, 0.02, 0.005, 0.0025, 0.001, 0.0005, 0.05, 0.1};
+        String[] bandColor = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Grey", "White"}; // Length = 10
+        int[] bandValue = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; // Length = 10
 
-        int band1;
-        int band2;
-        int band3;
-        boolean fourBands = false;
-        boolean fiveBands = false;
-        boolean sixBands = false;
+        String[] toleranceColor = {"Brown", "Red", "Green", "Blue", "Violet", "Grey", "Gold", "Silver"}; // Length = 10
+        String[] toleranceValue = {"+-1%", "+-2%", "+-0.5%", "+-0.25%", "+-0.10%", "+-0.05%", "+-5%", "+-10%"}; // This is a string because it doesn't actually directly affect the output value, you just have to include it
+        
+        // Multiplier color is the same as bandColor
+        int[] multiplierValue = {1, 10, 100, 1, 10, 100, 1, 10, 100, 1}; // o, o, o, k, k, m, m, m, g Length = 10
 
         String[] numBandsChoice = {"4", "5", "6", "Quit"};
         int numBands = JOptionPane.showOptionDialog(null, "How many bands does the resistor have?", "Choose an amount", 0, 1, null, numBandsChoice, numBandsChoice[0]);
 
+        // 0 - four bands, 1 - five bands, 2 - six bands
+
+        String result = "";
+        int resultNum = 0;
+        char multiplierChar = ' ';
+        int bandChoice = 0;
+
         switch (numBands) {
             case 0:
-                band1 = JOptionPane.showOptionDialog(null, "Band 1 Color: ", "Choose a color", 0, 1, null, colors, colors[0]);
-                fourBands = true;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the first band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the second band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the third band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+
+                if (bandChoice == 10) { // 10
+                    multiplierChar = 'G';
+                }
+                else if (bandChoice > 6) { // More than 6 but not 10 M
+                    multiplierChar = 'M';
+                }
+                else if (bandChoice < 2) { // Less than 2 NONE
+                    multiplierChar = ' ';
+                }
+                else { // K
+                    multiplierChar = 'K';
+                }
+
+                resultNum = Integer.parseInt(result);
+                resultNum *= multiplierValue[bandChoice];
+                result = "";
+                result += resultNum;
+                result += multiplierChar;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the fourth band?", "Choose a color", 0, 1, null, toleranceColor, toleranceColor[0]);
+                if (bandChoice == -1) break;
+                result += " " + toleranceValue[bandChoice];
+                JOptionPane.showMessageDialog(null, "That resistor has the value of: \n" + result);
                 break;
             case 1:
-                band1 = JOptionPane.showOptionDialog(null, "Band 1 Color: ", "Choose a color", 0, 1, null, colors, colors[0]);
-                band2 = JOptionPane.showOptionDialog(null, "Band 2 Color: ", "Choose a color", 0, 1, null, colors, colors[0]);
-                fiveBands = true;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the first band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the second band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the third band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the fourth band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+
+                if (bandChoice == 10) { // 10
+                    multiplierChar = 'G';
+                }
+                else if (bandChoice > 6) { // More than 6 but not 10 M
+                    multiplierChar = 'M';
+                }
+                else if (bandChoice < 2) { // Less than 2 NONE
+                    multiplierChar = ' ';
+                }
+                else { // K
+                    multiplierChar = 'K';
+                }
+
+                resultNum = Integer.parseInt(result);
+                resultNum *= multiplierValue[bandChoice];
+                result = "";
+                result += resultNum;
+                result += multiplierChar;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the fifth band?", "Choose a color", 0, 1, null, toleranceColor, toleranceColor[0]);
+                if (bandChoice == -1) break;
+                result += " " + toleranceValue[bandChoice];
+                JOptionPane.showMessageDialog(null, "That resistor has the value of: \n" + result);
                 break;
             case 2:
-                band1 = JOptionPane.showOptionDialog(null, "Band 1 Color: ", "Choose a color", 0, 1, null, colors, colors[0]);
-                band2 = JOptionPane.showOptionDialog(null, "Band 2 Color: ", "Choose a color", 0, 1, null, colors, colors[0]);
-                band3 = JOptionPane.showOptionDialog(null, "Band 3 Color: ", "Choose a color", 0, 1, null, colors, colors[0]);
-                sixBands = true;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the first band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the second band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the third band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the fourth band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+                result += bandChoice;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the fifth band?", "Choose a color", 0, 1, null, bandColor, bandColor[0]);
+                if (bandChoice == -1) break;
+
+                if (bandChoice == 10) { // 10
+                    multiplierChar = 'G';
+                }
+                else if (bandChoice > 6) { // More than 6 but not 10 M
+                    multiplierChar = 'M';
+                }
+                else if (bandChoice < 2) { // Less than 2 NONE
+                    multiplierChar = ' ';
+                }
+                else { // K
+                    multiplierChar = 'K';
+                }
+
+                resultNum = Integer.parseInt(result);
+                resultNum *= multiplierValue[bandChoice];
+                result = "";
+                result += resultNum;
+                result += multiplierChar;
+                bandChoice = JOptionPane.showOptionDialog(null, "What color is the sixth band?", "Choose a color", 0, 1, null, toleranceColor, toleranceColor[0]);
+                if (bandChoice == -1) break;
+                result += " " + toleranceValue[bandChoice];
+                JOptionPane.showMessageDialog(null, "That resistor has the value of: \n" + result);
                 break;
             default:
-                System.exit(0);
                 break;
-        }
-
-        if (fourBands) {
-            
-        }
-        else if (fiveBands) {
-
-        }
-        else if (sixBands) {
-
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Error");
         }
         
     } // End main
