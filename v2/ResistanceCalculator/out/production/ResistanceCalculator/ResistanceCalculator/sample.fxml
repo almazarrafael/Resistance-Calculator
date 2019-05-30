@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="250.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Band 1" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="250.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Band 2" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="250.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Band 3" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="250.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Band 4" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="250.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Band 5" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="25.0" prefWidth="250.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OUTPUT" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
